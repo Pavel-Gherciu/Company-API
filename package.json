@@ -1,0 +1,29 @@
+{
+  "name": "company-api",
+  "version": "1.0.0",
+  "description": "Production-level web scraper for extracting company contact information from websites",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js",
+    "scrape": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "web-scraping",
+    "contact-extraction",
+    "puppeteer",
+    "automation",
+    "data-mining"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "csv-parser": "^3.2.0",
+    "csv-writer": "^1.6.0",
+    "p-queue": "^8.1.0",
+    "puppeteer": "^24.15.0",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2"
+  }
+}
