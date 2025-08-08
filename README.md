@@ -16,17 +16,20 @@ It'll check if you have data, scrape websites if you don't (takes about 10 minut
 ### Step 1: Data extraction
 
 #### 1.1 The scraping part
-Had to scrape 997 websites from the CSV file. Used Puppeteer because it handles modern websites better than other scrapers. Set it to run 15 pages at once so it doesn't take forever.
+Had to scrape 997 websites from the CSV file. Used Puppeteer because it handles modern websites better than other scrapers. Set it to run 15 browsers at once so it doesn't take forever. Around 30% of websites in the list do not exist anymore or have good bot protection.
 
 Got these data points:
-- Phone numbers (found on about 60% of sites)
-- Social media links (about 70% of sites)  
-- Addresses (about 40% of sites)
+- Phone numbers (found on about 60% of working sites)
+- Social media links (about 70% of working sites)  
+- Addresses (about 40% of working sites)
 
-Some sites failed because they block bots, timeout, or just don't have the data.
 
 #### 1.2 Data analysis
-- Crawled 900+ out of 997 websites (around 90% success rate)
+- Crawled ~600 out of 997 websites (around 60% success rate to find a real working site)
+- General fill rate of 48% (at least one data point found)
+- Phone fill rate: 34%
+- Social media fill rate: 34%
+- Address fill rate: 27%
 - Phone extraction worked pretty well, addresses not so much
 - Social media was easier to find than expected
 
@@ -55,7 +58,7 @@ Matching logic:
 
 **Single match:**
 ```bash
-POST /api/match
+POST localhost:3000/api/match
 {
   "name": "SteppIR",
   "website": "steppir.com"
@@ -64,7 +67,7 @@ POST /api/match
 
 **Batch matching:**
 ```bash
-POST /api/batch-match
+POST localhost:3000/api/batch-match
 {
   "companies": [
       {
