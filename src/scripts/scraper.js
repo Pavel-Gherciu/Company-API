@@ -1,6 +1,7 @@
-const ScraperService = require('./src/services/scraperService');
-const { readWebsitesFromCsv, saveResults } = require('./src/utils/fileUtils');
-
+require('../config/config');
+const ScraperService = require('../services/scraperService');
+const { readWebsitesFromCsv, saveResults, mergeScrapedDataWithCompanyNames } = require('../utils/fileUtils');
+const path = require('path');
 
 const CONFIG = {
   csvFilePath: 'data/sample-websites.csv',
@@ -45,7 +46,16 @@ async function main() {
       console.log('\n Saving results...');
       await saveResults(results, CONFIG.outputBaseName);
       
-      console.log('\n Scraping completed successfully!');
+      // merge with company names
+      console.log('\n Merging with company names...');
+      const scrapedDataPath = path.join(__dirname, '..', '..', 'temp', `${CONFIG.outputBaseName}.json`);
+      const companyNamesPath = path.join(__dirname, '..', '..', 'data', 'sample-websites-company-names.csv');
+      const outputPath = path.join(__dirname, '..', '..', 'temp', 'merged-company-data.csv');
+      
+      await mergeScrapedDataWithCompanyNames(scrapedDataPath, companyNamesPath, outputPath);
+      console.log('Data merging completed!');
+      
+      console.log('\n Scraping and merging completed successfully!');
       
     } finally {
       // always close the scraper service
@@ -64,4 +74,3 @@ if (require.main === module) {
 }
 
 module.exports = { main, CONFIG };
-  

@@ -17,7 +17,7 @@ const BROWSER_CONFIG = {
 };
 
 const TIMEOUTS = {
-  navigation: 30000,
+  navigation: parseInt(process.env.BROWSER_NAVIGATION_TIMEOUT) || 30000,
   contactPage: 20000
 };
 

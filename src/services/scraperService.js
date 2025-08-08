@@ -4,7 +4,7 @@ const { navigateToContactPage, tryUrlWithFallback } = require('../extractors/pag
 
 class ScraperService {
   constructor(options = {}) {
-    this.concurrency = options.concurrency || 15;
+    this.concurrency = options.concurrency || parseInt(process.env.SCRAPER_CONCURRENCY) || 15;
     this.browser = null;
     this.errorCounts = new Map();
   }

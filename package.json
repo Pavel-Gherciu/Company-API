@@ -2,12 +2,16 @@
   "name": "company-api",
   "version": "1.0.0",
   "description": "Production-level web scraper for extracting company contact information from websites",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "node index.js",
-    "scrape": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node main.js",
+    "dev": "node main.js",
+    "scrape": "node src/scripts/scraper.js",
+    "reindex": "node src/scripts/indexer.js",
+    "clean": "powershell \"Remove-Item 'temp\\*.json', 'temp\\*.csv' -Force -ErrorAction SilentlyContinue\"",
+    "docker": "docker-compose up -d",
+    "docker-stop": "docker-compose down",
+    "test": "node tests/test-api.js"
   },
   "keywords": [
     "web-scraping",
@@ -19,8 +23,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@elastic/elasticsearch": "^8.11.0",
+    "cors": "^2.8.5",
     "csv-parser": "^3.2.0",
     "csv-writer": "^1.6.0",
+    "express": "^5.1.0",
     "p-queue": "^8.1.0",
     "puppeteer": "^24.15.0",
     "puppeteer-extra": "^3.3.6",

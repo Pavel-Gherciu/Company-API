@@ -1,0 +1,12 @@
+# Temp files (scraped data and merged results)
+temp/
+
+# Generated files
+merged-company-data.*
+scrape-results.*
+
+# Node modules
+node_modules/
+
+# Old files
+old/
