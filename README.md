@@ -16,7 +16,9 @@ It'll check if you have data, scrape websites if you don't (takes about 10 minut
 ### Step 1: Data extraction
 
 #### 1.1 The scraping part
-Had to scrape 997 websites from the CSV file. Used Puppeteer because it handles modern websites better than other scrapers. Set it to run 15 browsers at once so it doesn't take forever. Around 30% of websites in the list do not exist anymore or have good bot protection.
+Had to scrape 997 websites from the CSV file. Used Puppeteer because it handles modern websites better than other scrapers. First batches of testing showed that a considerable number of websites had certification and security issues which meant that it was needed to attempt to try with http instead of https, as well as add certain settings to puppeteer to be able to actually open the page. At the same time, for some sites the information I needed could only be found in contact pages and as such the scraper also was made to try to navigate to this kind of page if it didn't find the information it needed in the landing page and if it was actually available on the domain. 
+
+For speed, I set the scraper to run 15 browsers at once so it doesn't take forever. Around 30% of websites in the list do not exist anymore or have good bot protection.
 
 Got these data points:
 - Phone numbers (found on about 60% of working sites)
